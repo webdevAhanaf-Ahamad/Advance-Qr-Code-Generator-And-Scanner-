@@ -88,6 +88,7 @@ loginForm.addEventListener("submit", function(e){
   })
   .then(res => res.json())
   .then(response =>{
+console.log("Full console", response)
     if(response.result === "success"){
       showToast(response.message)
       localStorage.setItem("uuid", "AKfycbwGoO7BlleLsmELZRjFMQ1ibITUBAVWKZc6We6sSPdMHH3GpwDxIttLTX7_JLDNb10GDg")
