@@ -31,7 +31,7 @@ function showSignup(){
 }
 const signupForm = document.getElementById('signupForm');
 const loginForm = document.getElementById('loginForm');
-const urlDb = "https://script.google.com/macros/s/AKfycbwGoO7BlleLsmELZRjFMQ1ibITUBAVWKZc6We6sSPdMHH3GpwDxIttLTX7_JLDNb10GDg/exec" // v2
+const urlDb = "https://script.google.com/macros/s/AKfycbwGoO7BlleLsmELZRjFMQ1ibITUBAVWKZc6We6sSPdMHH3GpwDxIttLTX7_JLDNb10GDg/exec"
 
 signupForm.addEventListener("submit", function(e){
   e.preventDefault()
@@ -81,6 +81,7 @@ loginForm.addEventListener("submit", function(e){
     email: l_email,
     password: l_pass,
   }
+  localStorage.setItem("useE", l_email)
   fetch(urlDb, {
     method: "POST",
     body: JSON.stringify(loginData),
@@ -226,5 +227,3 @@ function hideScanner() {
   }
   document.getElementById('qrCodeScan').classList.add('hidden');
 }
-
-
