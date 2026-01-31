@@ -31,7 +31,7 @@ function showSignup(){
 }
 const signupForm = document.getElementById('signupForm');
 const loginForm = document.getElementById('loginForm');
-const urlDb = "https://script.google.com/macros/s/AKfycbwGoO7BlleLsmELZRjFMQ1ibITUBAVWKZc6We6sSPdMHH3GpwDxIttLTX7_JLDNb10GDg/exec"
+const urlDb = "https://script.google.com/macros/s/AKfycbyDfhZPrznFRcCkuCC8z3zFTR_f5LV64B9D_4fyivOevOujc3rJ7F3uOOeG6nNDUyK3YQ/exec" // v2
 
 signupForm.addEventListener("submit", function(e){
   e.preventDefault()
