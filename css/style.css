@@ -1,0 +1,478 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #1e293b;
+}
+
+#authSect, #qrSect {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-container, .qr-container {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  width: 100%;
+  max-width: 420px;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  text-align: center;
+  color: #0f172a;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: -0.025em;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #1e293b;
+  background-color: #fcfdfe;
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #10b981;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.opt-item label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #64748b;
+}
+
+input[type="color"] {
+  height: 50px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background-color: #94a3b8 !important;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+#qrcode {
+  margin: 2rem auto;
+  padding: 15px;
+  background: #f1f5f9;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+#qrcode img {
+  border-radius: 8px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+p {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+a {
+  color: #10b981;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.hidden { display: none !important; }
+
+#toast-container {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.toast {
+  background: #1e293b;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  animation: toastIn 0.5s ease-out;
+  width: auto !important;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.toastOut {
+  animation: toastOut 1s ease-out;
+}
+@keyframes toastOut {
+  to { opacity: 0; transform: translateY(-20px); }
+  from { opacity: 1; transform: translateY(0); }
+}
+
+.toast.success { background: #10b981; }
+.toast.error { background: #ef4444; }
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top: 2.5px solid white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@media (max-width: 1024px) {
+  .auth-container, .qr-container {
+    max-width: 380px;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+    align-items: flex-start;
+    padding-top: 50px;
+  }
+  
+  .auth-container, .qr-container {
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .btn-group button {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+    background-color: #ffffff; 
+  }
+
+  .auth-container, .qr-container {
+    padding: 1.5rem;
+    box-shadow: none;
+    border: none;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  input, select, button {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+
+  #qrcode {
+    margin: 1.5rem auto;
+    padding: 10px;
+  }
+
+  #qrcode canvas, #qrcode img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .toast {
+    width: auto;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-height: 600px) {
+  body {
+    align-items: flex-start;
+  }
+  
+  .auth-container, .qr-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-container, .qr-container, .toast {
+    animation: none;
+  }
+}
+.qr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 10px;
+}
+
+.qr-header h2 {
+  margin-bottom: 0 !important;
+  text-align: left !important;
+  font-size: 1.5rem;
+}
+
+.logout-btn {
+  width: auto !important;
+  margin-top: 0 !important;
+  padding: 8px 16px !important;
+  background-color: #fee2e2 !important;
+  color: #ef4444 !important;
+  border-radius: 10px !important;
+  font-size: 0.85rem !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease !important;
+}
+
+.logout-btn:hover {
+  background-color: #fecaca !important;
+  transform: translateY(-1px);
+}
+
+.logout-btn svg {
+  stroke: #ef4444;
+}
+
+@media (max-width: 480px) {
+  .qr-header {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .qr-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .logout-btn {
+    padding: 6px 12px !important;
+    font-size: 0.8rem !important;
+  }
+}
+#qrCodeScan {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.9); /* হালকা নীলচে কালো অন্ধকার ব্যাকগ্রাউন্ড */
+    backdrop-filter: blur(8px); /* ব্যাকগ্রাউন্ড ব্লার */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+
+/* স্ক্যানার মেইন কন্টেইনার */
+.scanner-container {
+  position: fixed;
+  inset: 0; /* top, left, right, bottom: 0 */
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px); /* ব্যাকগ্রাউন্ড ব্লার */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.scanner-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.scanner-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+/* স্ক্যানিং কার্ড ও রেসপন্সিভ ভিডিও */
+.scan-card {
+  width: 100%;
+  max-width: 350px; /* মোবাইল স্ক্রিনের জন্য আদর্শ */
+  aspect-ratio: 1 / 1; /* স্কয়ার শেপ */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  background: #000;
+}
+
+#video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ভিডিও যাতে পুরো ফ্রেমে ফিট হয় */
+}
+
+/* স্ক্যানিং অ্যানিমেশন লাইন */
+.scan-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00ff00;
+  box-shadow: 0 0 15px #00ff00;
+  z-index: 10;
+  animation: scanning 2s linear infinite;
+}
+
+@keyframes scanning {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+/* ফোর কর্নার বর্ডার ডিজাইন (ঐচ্ছিক কিন্তু সুন্দর দেখায়) */
+.scan-card::after {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 2px solid transparent;
+  /* এখানে আপনি চাইলে আরও স্টাইল যোগ করতে পারেন */
+}
+
+/* বন্ধ করুন বাটন */
+.close-scan-btn {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 200px;
+  padding: 12px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 50px; /* পিল শেপ */
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.close-scan-btn:active {
+  transform: scale(0.95);
+}
+
+/* মিডিয়া কোয়েরি ছোট ডিভাইসের জন্য */
+@media (max-width: 480px) {
+  .scan-card {
+    max-width: 280px;
+  }
+  .scanner-header h3 {
+    font-size: 1.2rem;
+  }
+}
+
+
+
+
